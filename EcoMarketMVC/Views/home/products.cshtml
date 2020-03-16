@@ -1,0 +1,84 @@
+﻿@model  IEnumerable<EcoMarketMVC.Models.Product>
+@{
+    ViewBag.Title = " | Məhsullar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="home">
+    <div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="images/categories.jpg" data-speed="0.8"></div>
+    <div class="home_container">
+        <div class="home_content">
+            <div class="home_title" style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">@if (ViewBag.Q != null) {<span>@ViewBag.Q</span> }else{<span> Məhsullar</span>}</div>
+            <div class="breadcrumbs">
+                <ul class="d-flex flex-row align-items-center justify-content-start">
+                    <li><a href="/">Əsas səhifə</a></li>
+                    @if (ViewBag.CategoryId != null)
+                    {
+                        <li><a href="/home/category/@ViewBag.CategoryId">@ViewBag.CategoryName</a></li>
+                        <li>@((Model.Count() > 0) ? Model.FirstOrDefault().Subcategory.Name : "")</li>
+}
+                    @if (ViewBag.Q != null)
+                    {
+                        <li><a href="#">@ViewBag.Q</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="products" style="margin-top:-5%">
+    <div class="products_bar">
+        <div class="section_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="products_bar_content d-flex flex-column flex-xxl-row align-items-start align-items-xxl-center justify-content-start">
+                            <div class="product_categories">
+                                <ul class="d-flex flex-row align-items-start justify-content-start flex-wrap">
+                                    <li class="@ViewBag.ActiveQ1"><a href="/home/products?q=gununfurseti">Günün Fürsəti</a></li>
+                                    <li class="@ViewBag.ActiveQ2"><a href="/home/products?q=sizinucun">Sizin üçün</a></li>
+                                    <li class="@ViewBag.ActiveQ3"><a href="/home/products?q=munasibqiymetler">Münasib Qiymətlər</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section_container" style="margin-top:-5%">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="products_container grid">
+                        @if (Model.Count() == 0)
+                        {
+                            <div class="alert alert-info font-weight-bold">Seçilmiş kateqoriya üzrə məhsul tapılmadı.</div>
+                        }
+                        else
+                        {
+                            foreach (var item in Model)
+                            {
+                                <div class="product grid-item @((item.IsHot) ? "hot" : "") @((item.IsSale) ? "sale" : "")">
+                                    <div class="product_inner">
+                                        <a href="/home/product/@item.Id">
+                                            <div class="product_image">
+                                                <img src="~/assets/upload_images/@item.ImageUrl" alt="@item.Name" height="200" width="500" style="object-fit:scale-down">
+                                                <div class="product_tag">@((item.IsHot) ? "hot" : "") @((item.IsSale) ? "sale" : "")</div>
+                                            </div>
+                                        </a>
+                                        <div class="product_content text-center">
+                                            <div class="product_title"><a href="/home/product/@item.Id">@item.Name</a></div>
+                                            <div class="product_price">@item.Price AZN <span>@((item.IsSale) ? (Convert.ToDouble(item.Price) * 0.2 + Convert.ToDouble(item.Price)).ToString() : "") @((item.IsSale) ? "AZN" : "")</span></div>
+                                            <div class="product_button ml-auto mr-auto trans_200"><a href="/home/addtocart/@item.Id">səbətə əlavə et</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

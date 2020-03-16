@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "Səbət";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/assets/styles/cart.css" rel="stylesheet" />
+<link href="~/assets/styles/cart_responsive.css" rel="stylesheet" />
+<div class="home">
+    <div class="home_container">
+        <div class="home_content">
+            <div class="home_title" style="font-family:sans-serif">Səbət</div>
+            <div class="breadcrumbs">
+                <ul class="d-flex flex-row align-items-center justify-content-start">
+                    <li><a href="/">Əsas səhifə</a></li>
+                    <li>Səbət</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="cart_section" style="margin-top:-7%">
+    <div class="section_container">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    @{ List<EcoMarketMVC.Models.Cart> lscart = (List<EcoMarketMVC.Models.Cart>)System.Web.HttpContext.Current.Session["Cart"];}
+                    @if (lscart.Count == 0)
+                    {
+                        <div class="alert alert-info font-weight-bold">Səbət boşdur</div>
+                        <div class="cart_buttons d-flex flex-row align-items-start justify-content-start">
+                            <div class="cart_buttons_inner ml-auto d-flex flex-row align-items-start justify-content-start flex-wrap">
+                                <div class="button button_continue trans_200"><a href="/">davam et</a></div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="cart_container">
+
+                            <div class="cart_bar">
+                                <ul class="cart_bar_list item_list d-flex flex-row align-items-center justify-content-start">
+                                    <li>Məhsul</li>
+                                    <li style="text-align:left">Ad</li>
+                                    <li></li>
+                                    <li>Qiymət</li>
+                                    <li>Miqdar</li>
+                                    <li>Cəmi</li>
+                                </ul>
+                            </div>
+
+                            <div class="cart_items">
+                                <ul class="cart_items_list">
+                                    @foreach (var item in lscart)
+                                    {
+                                        <li class="cart_item item_list d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
+                                            <div class="product d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
+                                                <a href="/home/deletefromshoppingcart/@item.Product.Id" style="margin-right:1%"><i class="fa fa-trash" style="color:#414141;font-size:1.4em;"></i></a>
+                                                <div>
+                                                    <div class="product_image"><img src="~/assets/upload_images/@item.Product.ImageUrl" alt="@item.Product.Name"></div>
+                                                </div>
+                                                <div class="product_name text-lg-center product_text">
+                                                    <a href="/home/product/@item.Product.Id">@item.Product.Name</a>
+                                                </div>
+                                            </div>
+
+                                            <div class="product_price text-lg-center product_text"></div>
+                                            <div class="product_price text-lg-center product_text"></div>
+                                            <div class="product_price text-lg-center product_text"><span>Qiymət: </span>@item.Product.Price AZN</div>
+                                            <div class="product_price text-lg-center product_text"><span>Miqdar: </span>@item.Quantity</div>
+                                            <div class="product_price text-lg-center product_text"><span>Cəmi: </span>@(String.Format("{0:N0}", Convert.ToDouble(item.Quantity) * Convert.ToDouble(item.Product.Price))) AZN</div>
+                                        </li>
+                                    }
+
+                                </ul>
+                            </div>
+
+                            <div class="cart_buttons d-flex flex-row align-items-start justify-content-start">
+                                <div class="cart_buttons_inner ml-auto d-flex flex-row align-items-start justify-content-start flex-wrap">
+                                    <div class="button button_continue trans_200"><a href="/">davam et</a></div>
+                                    <div class="button button_clear trans_200"><a href="categories.html">sİFARİŞİ TƏSDİQLƏ</a></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

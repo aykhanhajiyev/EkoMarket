@@ -1,0 +1,279 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Eco-Market.az - @ViewBag.Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Designed By Aykhan Hajiyev for Eco-market">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="~/assets/styles/bootstrap-4.1.3/bootstrap.css">
+    <link href="~/assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="~/assets/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/plugins/OwlCarousel2-2.2.1/animate.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/styles/main_styles.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/styles/responsive.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/styles/categories.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/styles/categories_responsive.css">
+    @if (ViewBag.StyleofProduct == true)
+    {
+        <link rel="stylesheet" type="text/css" href="~/assets/styles/product.css">
+        <link rel="stylesheet" type="text/css" href="~/assets/styles/product_responsive.css">
+        <!-- 1. Add latest jQuery and fancybox files -->
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+        <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    }
+
+
+</head>
+<body>
+    <div class="super_container">
+
+        <header class="header">
+            <div class="header_content d-flex flex-row align-items-center justify-content-start">
+
+                <div class="hamburger menu_mm"><i class="fa fa-bars menu_mm" aria-hidden="true"></i></div>
+
+                <div class="header_logo">
+                    <a href="#"><img src="~/assets/images/logo.png" width="150" height="60" /></a>
+                </div>
+
+                <nav class="header_nav">
+                    <ul class="d-flex flex-row align-items-center justify-content-start">
+                        <li><a href="/">əsas səhifə</a></li>
+                        @foreach (var category in (List<EcoMarketMVC.Models.Category>)ViewBag.Categories)
+                        {
+                            <li><a href="/home/category/@category.Id">@category.Name</a></li>
+                        }
+                        <li><a href="#">Haqqımızda</a></li>
+                    </ul>
+                </nav>
+
+                <div class="cart d-flex flex-row align-items-center justify-content-start">
+                    <div class="cart_icon">
+                        <a href="/home/shoppingcart">
+                            <img src="~/assets/images/bag.png" alt="">
+                            <div class="cart_num">@ViewData["CountOfCart"]</div>
+                        </a>
+                    </div>
+                    <div class="cart_text">Səbət</div>
+                    <div class="cart_price">@ViewData["SumOfCart"] AZN</div>
+                </div>
+            </div>
+        </header>
+
+        <div class="menu d-flex flex-column align-items-start justify-content-start menu_mm trans_400" style="overflow-y:scroll;overflow-x:hidden">
+            <div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
+
+            <div class="menu_search">
+                <form action="#" class="header_search_form menu_mm">
+                    <input type="search" class="search_input menu_mm" placeholder="Axtar" required="required">
+                    <button class="header_search_button d-flex flex-column align-items-center justify-content-center menu_mm">
+                        <i class="fa fa-search menu_mm" aria-hidden="true"></i>
+                    </button>
+                </form>
+            </div>
+            <nav class="menu_nav">
+                <ul class="menu_mm">
+                    <li class="menu_mm"><a href="/">Əsas səhifə</a></li>
+                    @foreach (var category in (List<EcoMarketMVC.Models.Category>)ViewBag.Categories)
+                    {
+                        <li class="menu_mm"><a href="/home/category/@category.Id">@category.Name</a></li>
+                    }
+                    <li class="menu_mm"><a href="#">Haqqımızda</a></li>
+                </ul>
+            </nav>
+            <div class="menu_extra">
+                <div class="menu_social">
+                    <ul>
+                        <li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar" style="overflow-y:scroll;overflow-x:hidden">
+
+            <div class="sidebar_logo">
+                <a href="/"><img src="~/assets/images/logo.png" width="200" /></a>
+            </div>
+
+            <nav class="sidebar_nav" style="margin-top:2%;">
+                <ul>
+                    <li><a href="/">Əsas səhifə<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                    @foreach (var category in (List<EcoMarketMVC.Models.Category>)ViewBag.Categories)
+                    {
+                        <li><a href="/home/category/@category.Id">@category.Name<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                    }
+                    <li><a href="#">Haqqımızda<i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                </ul>
+            </nav>
+
+            <div class="search">
+                <form action="#" class="search_form" id="sidebar_search_form">
+                    <input type="text" class="search_input" placeholder="Axtar" required="required">
+                    <button class="search_button"><i class="fa fa-search" aria-hidden="true"></i></button>
+                </form>
+            </div>
+
+            <div class="cart d-flex flex-row align-items-center justify-content-start">
+                <div class="cart_icon">
+                    <a href="/home/shoppingcart">
+                        <img src="~/assets/images/bag.png" alt="">
+                        <div class="cart_num">@ViewData["CountOfCart"]</div>
+                    </a>
+                </div>
+                <div class="cart_text">Səbət</div>
+                <div class="cart_price">@ViewData["SumOfCart"] AZN</div>
+            </div>
+        </div>
+        @RenderBody()
+        <footer class="footer">
+            <div class="footer_content">
+                <div class="section_container">
+                    <div class="container">
+                        <div class="row">
+
+                            <div class="col-xxl-3 col-md-6 footer_col">
+                                <div class="footer_about">
+
+                                    <div class="footer_logo">
+                                        <a href="#"><img src="~/assets/images/logo.png" width="300" /></a>
+                                    </div>
+                                    <div class="footer_about_text">
+                                        <p>Haqqımızda Statement </p>
+                                    </div>
+                                    <div class="cards">
+                                        <ul class="d-flex flex-row align-items-center justify-content-start">
+                                            <li><a href="#"><img src="~/assets/images/card_1.jpg" alt=""></a></li>
+                                            <li><a href="#"><img src="~/assets/images/card_2.jpg" alt=""></a></li>
+                                            <li><a href="#"><img src="~/assets/images/card_3.jpg" alt=""></a></li>
+                                            <li><a href="#"><img src="~/assets/images/card_4.jpg" alt=""></a></li>
+                                            <li><a href="#"><img src="~/assets/images/card_5.jpg" alt=""></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xxl-3 col-md-6 footer_col">
+                                <div class="footer_questions">
+                                    <div class="footer_title">Eco-Market.az</div>
+                                    <div class="footer_list">
+                                        <ul>
+                                            <li><a href="#">Əsas səhifə</a></li>
+                                            <li><a href="#">Haqqımızda</a></li>
+                                            <li><a href="#">Əlaqə</a></li>
+                                            <li><a href="#">İstifadə qaydaları</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer_social">
+                <div class="section_container">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="footer_social_container d-flex flex-row align-items-center justify-content-between">
+
+                                    <a href="#">
+                                        <div class="footer_social_item d-flex flex-row align-items-center justify-content-start">
+                                            <div class="footer_social_icon"><i class="fa fa-instagram" aria-hidden="true"></i></div>
+                                            <div class="footer_social_title">instagram</div>
+                                        </div>
+                                    </a>
+
+                                    <a href="#">
+                                        <div class="footer_social_item d-flex flex-row align-items-center justify-content-start">
+                                            <div class="footer_social_icon"><i class="fa fa-google-plus" aria-hidden="true"></i></div>
+                                            <div class="footer_social_title">google +</div>
+                                        </div>
+                                    </a>
+
+                                    <a href="#">
+                                        <div class="footer_social_item d-flex flex-row align-items-center justify-content-start">
+                                            <div class="footer_social_icon"><i class="fa fa-pinterest" aria-hidden="true"></i></div>
+                                            <div class="footer_social_title">pinterest</div>
+                                        </div>
+                                    </a>
+
+                                    <a href="#">
+                                        <div class="footer_social_item d-flex flex-row align-items-center justify-content-start">
+                                            <div class="footer_social_icon"><i class="fa fa-facebook" aria-hidden="true"></i></div>
+                                            <div class="footer_social_title">facebook</div>
+                                        </div>
+                                    </a>
+
+                                    <a href="#">
+                                        <div class="footer_social_item d-flex flex-row align-items-center justify-content-start">
+                                            <div class="footer_social_icon"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+                                            <div class="footer_social_title">twitter</div>
+                                        </div>
+                                    </a>
+
+                                    <a href="#">
+                                        <div class="footer_social_item d-flex flex-row align-items-center justify-content-start">
+                                            <div class="footer_social_icon"><i class="fa fa-youtube" aria-hidden="true"></i></div>
+                                            <div class="footer_social_title">youtube</div>
+                                        </div>
+                                    </a>
+
+                                    <a href="#">
+                                        <div class="footer_social_item d-flex flex-row align-items-center justify-content-start">
+                                            <div class="footer_social_icon"><i class="fa fa-tumblr-square" aria-hidden="true"></i></div>
+                                            <div class="footer_social_title">tumblr</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="credits">
+                <div class="section_container">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="credits_content d-flex flex-row align-items-center justify-content-end">
+                                    <div class="credits_text">
+                                        Müəllif Hüquqları Qorunur &copy; By Aykhan Hajiyev
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+   
+    <script src="~/assets/js/jquery-3.2.1.min.js" type="ddbe1a39c248c1c1d86bb4c0-text/javascript"></script>
+    <script src="~/assets/styles/bootstrap-4.1.3/popper.js" type="ddbe1a39c248c1c1d86bb4c0-text/javascript"></script>
+    <script src="~/assets/styles/bootstrap-4.1.3/bootstrap.min.js" type="ddbe1a39c248c1c1d86bb4c0-text/javascript"></script>
+    <script src="~/assets/plugins/greensock/TweenMax.min.js" type="ddbe1a39c248c1c1d86bb4c0-text/javascript"></script>
+    <script src="~/assets/plugins/greensock/TimelineMax.min.js" type="ddbe1a39c248c1c1d86bb4c0-text/javascript"></script>
+    <script src="~/assets/plugins/scrollmagic/ScrollMagic.min.js" type="ddbe1a39c248c1c1d86bb4c0-text/javascript"></script>
+    <script src="~/assets/plugins/greensock/animation.gsap.min.js" type="ddbe1a39c248c1c1d86bb4c0-text/javascript"></script>
+    <script src="~/assets/plugins/greensock/ScrollToPlugin.min.js" type="ddbe1a39c248c1c1d86bb4c0-text/javascript"></script>
+    <script src="~/assets/plugins/OwlCarousel2-2.2.1/owl.carousel.js" type="ddbe1a39c248c1c1d86bb4c0-text/javascript"></script>
+    <script src="~/assets/plugins/easing/easing.js" type="ddbe1a39c248c1c1d86bb4c0-text/javascript"></script>
+    <script src="~/assets/plugins/parallax-js-master/parallax.min.js" type="ddbe1a39c248c1c1d86bb4c0-text/javascript"></script>
+    <script src="~/assets/plugins/Isotope/isotope.pkgd.min.js" type="ddbe1a39c248c1c1d86bb4c0-text/javascript"></script>
+    <script src="~/assets/plugins/Isotope/fitcolumns.js" type="ddbe1a39c248c1c1d86bb4c0-text/javascript"></script>
+    <script src="~/assets/js/custom.js" type="ddbe1a39c248c1c1d86bb4c0-text/javascript"></script>
+    <script src="~/assets/js/rocket-loader.min.js" data-cf-settings="ddbe1a39c248c1c1d86bb4c0-|49" defer=""></script>
+    <script src="~/assets/js/categories.js" type="a9ec965c9465e663e801c1a0-text/javascript"></script>
+    <script src="~/assets/js/product.js" type="a9ec965c9465e663e801c1a0-text/javascript"></script>
+</body>
+</html>

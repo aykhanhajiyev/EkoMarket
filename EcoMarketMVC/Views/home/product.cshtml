@@ -1,0 +1,55 @@
+﻿@model EcoMarketMVC.Models.Product
+@{
+    ViewBag.Title = "Məhsul - " + Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="home">
+   
+    <div class="home_container">
+        <div class="home_content">
+            <div class="home_title">@Model.Name</div>
+            <div class="breadcrumbs">
+                <ul class="d-flex flex-row align-items-center justify-content-start">
+                    <li><a href="/">Əsas səhifə</a></li>
+                    <li><a href="/home/category/@ViewBag.CategoryId">@ViewBag.CategoryName</a></li>
+                    <li><a href="/home/products/@Model.SubcategoryId">@Model.Subcategory.Name</a></li>
+                    <li>@Model.Name</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="product" style="margin-top:-5%">
+    <div class="section_container">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="product_content_container d-flex flex-lg-row flex-column align-items-start justify-content-start">
+                        <div class="product_content order-lg-1 order-2">
+                            <div class="product_content_inner">
+                                <div class="product_image_row d-flex flex-md-row flex-column align-items-md-end align-items-start justify-content-start">
+                                    <div class="product_image_3 product_image">
+                                        <a data-fancybox="gallery" href="~/assets/upload_images/@Model.ImageUrl"><img src="~/assets/upload_images/@Model.ImageUrl" alt="@Model.Name" style="object-fit:scale-down;height:400px"></a>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <div class="product_sidebar order-lg-2 order-1">
+                            <form action="#" id="product_form" class="product_form">
+                                <div class="product_name">@Model.Name</div>
+                                <div class="product_price">@Model.Price AZN</div>
+                                <div class="product_color">Açıqlama: <span>@Html.Raw(Model.Description)</span></div>
+                                <div class="product_color">Kateqoriya: <span>@Model.Subcategory.Name</span></div>
+                                <div class="product_button trans_200" style="width:100%"><a href="/home/addtocart/@Model.Id">səbətə əlavə et</a></div>
+                                <div class="similar_products_button trans_200"><a href="/home/products/@Model.SubcategoryId">bənzər məhsullara bax</a></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

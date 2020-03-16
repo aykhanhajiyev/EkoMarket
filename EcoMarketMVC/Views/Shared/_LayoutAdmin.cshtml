@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ECO-Market - Admin Panel</title>
+
+    <!-- Global stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link href="~/assetsadmin/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+    <link href="~/assetsadmin/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="~/assetsadmin/css/core.css" rel="stylesheet" type="text/css">
+    <link href="~/assetsadmin/css/components.css" rel="stylesheet" type="text/css">
+    <link href="~/assetsadmin/css/colors.css" rel="stylesheet" type="text/css">
+    <!-- /global stylesheets -->
+    <!-- Core JS files -->
+    <script type="text/javascript" src="~/assetsadmin/js/plugins/loaders/pace.min.js"></script>
+    <script type="text/javascript" src="~/assetsadmin/js/core/libraries/jquery.min.js"></script>
+    <script type="text/javascript" src="~/assetsadmin/js/core/libraries/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/assetsadmin/js/plugins/loaders/blockui.min.js"></script>
+    <!-- /core JS files -->
+
+    <script type="text/javascript" src="~/assetsadmin/js/pages/uploader_bootstrap.js"></script>
+    <script type="text/javascript" src="~/assetsadmin/js/plugins/uploaders/fileinput/fileinput.min.js"></script>
+
+    <!-- Theme JS files -->
+    <script type="text/javascript" src="~/assetsadmin/js/plugins/forms/styling/switchery.min.js"></script>
+    <script type="text/javascript" src="~/assetsadmin/js/plugins/forms/styling/uniform.min.js"></script>
+    <script type="text/javascript" src="~/assetsadmin/js/plugins/ui/moment/moment.min.js"></script>
+    <script type="text/javascript" src="~/assetsadmin/ckeditor/ckeditor.js"></script>
+
+
+    <script type="text/javascript" src="~/assetsadmin/js/plugins/tables/datatables/datatables.min.js"></script>
+    <script type="text/javascript" src="~/assetsadmin/js/pages/datatables_basic.js"></script>
+    <script type="text/javascript" src="~/assetsadmin/js/core/app.js"></script>
+    <script type="text/javascript" src="~/assetsadmin/js/pages/form_layouts.js"></script>
+    <script type="text/javascript" src="~/assetsadmin/js/plugins/forms/selects/select2.min.js"></script>
+    <script type="text/javascript" src="~/assetsadmin/js/pages/datatables_sorting.js"></script>
+    <!-- /theme JS files -->
+
+
+</head>
+
+<body>
+    <div class="navbar navbar-inverse">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/partners">ECO-Market - Admin Panel</a>
+
+            <ul class="nav navbar-nav visible-xs-block">
+                <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
+                <li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
+            </ul>
+        </div>
+
+        <div class="navbar-collapse collapse" id="navbar-mobile">
+            <ul class="nav navbar-nav">
+                <li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- Page container -->
+    <div class="page-container">
+
+        <!-- Page content -->
+        <div class="page-content">
+
+            <div class="sidebar sidebar-main">
+                <div class="sidebar-content">
+                    <!-- Main navigation -->
+                    <div class="sidebar-category sidebar-category-visible">
+                        <div class="category-content no-padding">
+                            <ul class="navigation navigation-main navigation-accordion">
+
+                                <!-- Main -->
+                                <li class="navigation-header"><span>Əsas</span> <i class="icon-menu" title="" data-original-title="Main pages"></i></li>
+                                <li>
+                                    <a href="/admin/index"><i class="icon-list"></i> <span>Kateqoriyalar</span></a>
+                                </li>
+                                <li>
+                                    <a href="/admin/subcategories"><i class="icon-tree7"></i> <span>Alt Kateqoriyalar</span></a>
+                                </li>
+                                <li>
+                                    <a href="/admin/products"><i class="icon-stack4"></i> <span>Məhsullar</span></a>
+                                </li>
+                                <li>
+                                    <a href="/admin/orders"><i class="icon-bubbles"></i> <span>Sifarişlər</span></a>
+                                </li>
+
+                                <li>
+                                    <a href="/"><i class="icon-home2"></i> <span>Əsas səhifə</span></a>
+                                </li>
+                                <li>
+                                    <a href="/account/logout"><i class="icon-arrow-left52"></i> <span>Sistemdən çıxış</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /main navigation -->
+                </div>
+            </div>
+            @RenderBody()
+        </div>
+    </div>
+</body>
+</html>

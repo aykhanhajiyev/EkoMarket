@@ -1,0 +1,68 @@
+﻿@model IEnumerable<EcoMarketMVC.Models.Product>
+@{
+    ViewBag.Title = "Məhsullar";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<!-- Main content -->
+<div class="content-wrapper">
+    <!-- Content area -->
+    <div class="content">
+        <a href="/admin/newproduct" class="btn btn-info">Yeni Məhsul</a>
+        @if (TempData["Success"] != null)
+        {
+            <div class="row">
+                <div class="col-12" style="margin-top:20px;"><div class="alert alert-info">@TempData["Success"]</div></div>
+            </div>
+        }
+        <table class="table datatable-sorting">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Ad</th>
+                    <th>Qiymət</th>
+                    <th>Kateqoriya</th>
+                    <th>Alt Kateqoriya</th>
+                    <th></th>
+                    <th>Əməliyyatlar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td>@item.Price</td>
+                        <td>
+                            @foreach (var category in (List<EcoMarketMVC.Models.Category>)ViewBag.Categories)
+                            {
+                                if (item.Subcategory.CategoryId == category.Id)
+                                {
+                                    <span>@category.Name</span>
+                                    break;
+                                }
+                            }
+                        </td>
+                        <td>@item.Subcategory.Name</td>
+                        <td>
+                            Hot? 
+                            @if (item.IsHot)
+                            {<span class="badge badge-success">Yes</span>}
+                            else
+                            {<span class="badge badge-danger">No</span>}
+                            Sale? @if (item.IsSale)
+                            {<span class="badge badge-success">Yes</span> }
+                            else
+                            {<span class="badge badge-danger">No</span>}
+                        </td>
+                        <td><a href="/admin/editproduct/@item.Id" class="btn btn-sm btn-primary">Düzəliş</a> | <a href="/admin/deleteproduct/@item.Id" class="btn btn-sm btn-danger">Sil</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+
+
